@@ -1,0 +1,94 @@
+/*
+ * Copyright (c) 2013 Michael Souza <contact@michael-souza.com>
+ * This source code is released under the MIT license. (http://opensource.org/licenses/MIT)
+ */
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+	margin: 25px;
+}
+
+header {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+header img {
+	float: left;
+	margin-left: -20px;
+}
+
+header h1 {
+	font-size: 22px;
+	margin: 10px 0px 10px 40px;
+}
+
+footer {
+	text-align: center;
+}
+
+.panel {
+	width: 640px;
+	margin: 10px auto;
+}
+
+.options-panel {
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	line-height: 2em;
+}
+
+.options-panel th, .options-panel td {
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.options-panel th {
+	text-align: right;
+	width: 5%;
+	padding: 8px 15px 10px 10px;
+}
+
+.options-panel td {
+	width: 95%;
+	padding: 10px;
+}
+
+.options-panel label.indent {
+	margin-left: 24px;
+}
+
+.options-panel .disabled {
+	color: #999;
+}
+
+.input-focus {
+	border: 1px solid #fafafa;
+	box-shadow: 0 0 4px #007eff;
+	outline: none;
+}
+
+.input-good {
+	border: 1px solid #fafafa;
+	box-shadow: 0 0 4px lime;
+	outline: none;
+}
+
+.input-bad {
+	border: 1px solid #fafafa;
+	box-shadow: 0 0 4px red;
+	outline: none;
+}
+
+#fz-toggle-hotkey {
+	width: 24px;
+	text-align: center;
+}

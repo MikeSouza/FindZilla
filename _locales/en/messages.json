@@ -1,0 +1,53 @@
+{
+  "extension_description": {
+    "message": "Advanced find on page functionality (i.e. case sensitive and whole words matching)"
+  },
+  "command_description": {
+    "message": "Send a 'toggle-feature' event to the extension"
+  },
+  "find_label": {
+    "message": "Find:"
+  },
+  "prev_button": {
+    "message": "Previous"
+  },
+  "next_button": {
+    "message": "Next"
+  },
+  "match_case_label": {
+    "message": "Match case"
+  },
+  "match_words_label": {
+    "message": "Match whole words"
+  },
+  "save_on_refresh_label": {
+    "message": "Restore on page refresh"
+  },
+  "save_on_close_label": {
+    "message": "Restore on tab reopen"
+  },
+  "always_display_label": {
+    "message": "Always display on first page load"
+  },
+  "toggle_hotkey_label": {
+    "message": "Toggle: "
+  },
+  "default_toggle_hotkey_label": {
+    "message": "(Default: F)"
+  },
+  "behavior_options_label": {
+    "message": "Behavior"
+  },
+  "criteria_options_label": {
+    "message": "Criteria"
+  },
+  "hotkey_options_label": {
+    "message": "Hotkey"
+  },
+  "findzilla_options": {
+    "message": "FindZilla Options"
+  },
+  "empty_string": {
+    "message": ""
+  }
+}

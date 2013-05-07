@@ -1,0 +1,16 @@
+/*
+ * Copyright (c) 2013 Michael Souza <contact@michael-souza.com>
+ * This source code is released under the MIT license. (http://opensource.org/licenses/MIT)
+ */
+
+span {
+	color: green;
+}
+
+span span {
+	color: blue;
+}
+
+span span span {
+	color: red;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2013 Michael Souza &lt;contact@michael-souza.com&gt; -->
+<!-- This source code is released under the MIT license. (http://opensource.org/licenses/MIT) -->
+<html lang="en">
+  <head>
+    <title>FindZilla Test Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+    <script type="text/javascript" src="../lib/jquery-1.9.1.min.js"></script>
+  </head>
+  <body>
+    <div id="test-input">
+      <h2>Test Input</h2>
+      <ul>
+        <li>find</li>
+        <li>ABA</li>
+        <li>ABABA</li>        
+        <li>ABC</li>
+        <li>ABCDABD</li>        
+        <li>CBA</li>
+        <li>DBADCBA</li>
+      </ul>
+    </div>
+    <div id="test-text">
+      <h2>Test Text</h2>
+      <ul>
+        <li>
+          <h3 id="dude">f<span>i<span>n</span>de</span><span>rs</span></h3>
+          <h3>unf<span><span>in</span></span>de<span>rs</span></h3>
+          <h3>no f<span>in<span>de</span>rs </span><span>keepers</span></h3>
+          <h3>not f<span>in<span>d</span></h3> 
+          <h3><span>no f<span><span><span>i</span><span>n</span></span></span></span><span>der</span></h3>
+          <h3>Please, Do Fi<em>nd</em> this. Un<em>f</em>ind that.</h3>
+          <h3>Ok, FiNdErS <a href="test.html">FeE</a></h3>
+          <h3>No finders keepers</h3>
+        </li>
+        <li>
+          <h3><span>XYZ A<span>BABAB<span>AB</span>CABCABA</span>BA</span>ABA</h3>
+          <h3><span>ABABA<span>BABABAB<span>ABA</span>CABABA</span>BA</span>ABA</h3>          
+        </li>
+        <li>
+          <h3>ABC ABCDAB ABCDABCDABDE</h3>
+          <h3><span>XYZ ABCDA<span><span>BC</span>DAB</span></span>DE</h3>
+          <h3><span>ABC<span>DA<span>BC</span>DAB</span></span>DE</h3>          
+        </li>
+        <li>
+        <h3>EDBADCBADCBA BADCBA CBA</h3>
+        <h3><span>ED<span>BAD<span>CB</span></span></span>ADCBA ZYX</h3>        
+        <h3><span>ED<span>BAD<span>CB</span>AD</span></span>CBA</h3>          
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

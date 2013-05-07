@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2013 Michael Souza &lt;contact@michael-souza.com&gt; -->
+<!-- This source code is released under the MIT license. (http://opensource.org/licenses/MIT) -->
+
+<html>
+  <head>
+    <title>findzilla_options</title>
+    <link rel="stylesheet" type="text/css" href="../css/options.css">
+    <script type="text/javascript" src="../lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/hotkey.js"></script>
+  </head>
+  <body>
+    <header class="panel">
+      <img src="../images/icon48.png" width="48" height="48" alt="">
+      <h1>findzilla_options</h1>
+    </header>
+    <div class="panel options-panel">
+      <table>
+        <tr id="general-options">
+          <th>behavior_options_label</th>
+          <td>
+          <input id="fz-always-display" class="general-option" type="checkbox"/>
+          <label for="fz-always-display">always_display_label</label>
+          <br/>
+          <input id="fz-save-on-refresh" class="general-option" type="checkbox" checked="checked"/>
+          <label for="fz-save-on-refresh">save_on_refresh_label</label>
+          <br/>
+          <input id="fz-save-on-close" class="general-option" type="checkbox" checked="checked"/>
+          <label for="fz-save-on-close">save_on_close_label</label></td>
+        </tr>
+        <tr id="criteria-options">
+          <th>criteria_options_label</th>
+          <td><label for="fz-search-text">find_label</label>
+          <input id="fz-search-text" class="criteria-option" type="text"/>
+          <br/>
+          <input id="fz-match-case" class="criteria-option" type="checkbox"/>
+          <label for="fz-match-case">match_case_label</label>
+          <br/>
+          <input id="fz-whole-words" class="criteria-option" type="checkbox"/>
+          <label for="fz-whole-words">match_words_label</label></td>
+        </tr>
+        <tr id="hotkey-options">
+          <th>hotkey_options_label</th>
+          <td>
+          <input id="fz-toggle-enable" class="hotkey-option" type="checkbox"/>
+          <label for="fz-toggle-enable">toggle_hotkey_label</label><label for="fz-toggle-hotkey" class="indent">SHIFT + CTRL + </label>
+          <input id="fz-toggle-hotkey" class="hotkey-option" type="text" value="F" readonly disabled />
+        </tr>
+      </table>
+    </div>
+    <footer class="panel">
+      &copy; 2013 <a href="http://findzilla.michael-souza.com">Michael Souza</a> &middot; All Rights Reserved
+    </footer>
+    <script type="text/javascript" src="../js/options.js"></script>
+  </body>
+</html>
