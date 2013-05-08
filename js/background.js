@@ -169,9 +169,13 @@
       console.log("Received toggle response: " + JSON.stringify(response));
     }
 
-    function sendToggleRequest(tabs) {
+    function handleToggleCommand(tabs) {
       var tab = tabs.first();
 
+      sendToggleRequest(tab);  
+    }
+    
+    function sendToggleRequest(tab) {
       if (!tab.url.isChromeUrl()) {
         chrome.tabs.sendMessage(tab.id, new FindZilla.Message(FindZilla.MessageType.TOGGLE, null), handleToggleResponse);
       } else if (tab.url.isExtensionUrl()) {
@@ -199,7 +203,7 @@
           chrome.tabs.query({
             active : true,
             currentWindow : true
-          }, sendToggleRequest);
+          }, handleToggleCommand);
           break;
         default:
           break;
@@ -331,6 +335,9 @@
     function init() {
       // Clear local storage
       //storageManager.clearData();
+
+      // Listen for browser action click events
+      chrome.browserAction.onClicked.addListener(sendToggleRequest);
 
       // Listen for command events
       chrome.commands.onCommand.addListener(onCommand);
