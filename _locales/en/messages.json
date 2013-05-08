@@ -1,6 +1,6 @@
 {
   "extension_description": {
-    "message": "Advanced find on page functionality (i.e. case sensitive and whole words matching)"
+    "message": "Find text on pages better and more efficiently!"
   },
   "command_description": {
     "message": "Send a 'toggle-feature' event to the extension"
