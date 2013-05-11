@@ -33,8 +33,7 @@
   "commands": {
     "findzilla-toggle": {
       "suggested_key": {
-        "default": "Ctrl+Shift+F",
-        "mac": "Command+Shift+F"
+        "default": "Ctrl+Shift+F"
       },
       "description": "__MSG_toggle_command_description__"
     }
