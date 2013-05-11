@@ -331,7 +331,7 @@
      * Public Methods
      */
     function init() {
-      // Listen for message events from the extension background script.
+      // Listen for message events from the extension background or options page.
       chrome.extension.onMessage.addListener(onMessage);
 
       window.addEventListener("keydown", handleToggleHotkey, false);

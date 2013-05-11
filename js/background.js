@@ -135,12 +135,16 @@
       storageManager.saveData(FindZilla.OptionKey.ROOT, options);
     }
 
-    function init() {
+    function init(callback) {
       storageManager.loadData(FindZilla.OptionKey.ROOT, function(data) {
         options = data;
+
+        callback(this);
       }, function() {
         storageManager.saveData(FindZilla.OptionKey.ROOT, DefaultOptions, function() {
           options = JSON.parse(JSON.stringify(DefaultOptions));
+
+          callback(this);
         });
       });
     }
@@ -172,13 +176,29 @@
     function handleToggleCommand(tabs) {
       var tab = tabs.first();
 
-      sendToggleRequest(tab);  
+      sendToggleRequest(tab);
     }
-    
+
+    function isValidTab(tabId, url) {
+      var result = false;
+
+      if (url && ( result = !url.isChromeUrl()))
+        chrome.browserAction.enable(tabId);
+      else
+        chrome.browserAction.disable(tabId);
+
+      return result;
+    }
+
     function sendToggleRequest(tab) {
-      if (!tab.url.isChromeUrl()) {
+      if (isValidTab(tab.id, tab.url)) {
         chrome.tabs.sendMessage(tab.id, new FindZilla.Message(FindZilla.MessageType.TOGGLE, null), handleToggleResponse);
-      } else if (tab.url.isExtensionUrl()) {
+
+        return;
+      }
+
+      // The tab is the extension's options page
+      if (tab.url.isExtensionUrl()) {
         chrome.commands.getAll(function(commands) {
           var data = $.grep(commands, function(command) {
             return command.name === FindZilla.CommandType.TOGGLE;
@@ -222,6 +242,16 @@
       });
     }
 
+    function handleOptionRequest(data) {
+      if (!data || !data.option)
+        return;
+
+      var option = data.option;
+
+      if (option.section == FindZilla.OptionKey.HOTKEY && option.key == "toggleHotkey")
+        updateBrowserActionTitle(data.value);
+    }
+
     function onMessage(request, sender, sendResponse) {
       console.log((sender.tab ? "Received message from tab id: " + sender.tab.id : "Received message from extension id: " + chrome.i18n.getMessage("@@extension_id")) + "\n\t" + JSON.stringify(request));
 
@@ -229,6 +259,8 @@
         case FindZilla.MessageType.SAVE:
           handleSaveRequest(sender.tab, request.data, sendResponse);
           break;
+        case FindZilla.MessageType.OPTION:
+          handleOptionRequest(request.data);
         default:
           break;
       }
@@ -258,7 +290,27 @@
       sendLoadRequest(tabId, options);
     }
 
+    function reloadTabs() {
+      var toggleHotkey = optionsManager.getOption(FindZilla.OptionKey.HOTKEY, "toggleHotkey");
+
+      if (toggleHotkey) {
+        updateBrowserActionTitle(toggleHotkey);
+      }
+
+      chrome.tabs.query({}, function(allTabs) {
+        $.each(allTabs, function(index, tab) {
+          if (tab && isValidTab(tab.id, tab.url))
+            chrome.tabs.reload(tab.id);
+        });
+      });
+    }
+
     function handleTabLoaded(tabId, changeInfo, tab) {
+      if (!isValidTab(tabId, tab.url))
+        return;
+
+      tabUrls[tabId] = tab.url;
+
       var general = optionsManager.getOption(FindZilla.OptionKey.GENERAL);
 
       if (!general) {
@@ -295,12 +347,24 @@
       });
     }
 
+    function updateBrowserActionTitle(hotkey) {
+      var title = chrome.i18n.getMessage("toggle_browser_action_title") + " (" + chrome.i18n.getMessage("toggle_hotkey_prefix") + hotkey + ")";
+
+      chrome.browserAction.setTitle({
+        title : title
+      });
+    }
+
+    function onActivated(activeInfo) {
+      isValidTab(activeInfo.tabId, tabUrls[activeInfo.tabId]);
+    }
+
     function onUpdated(tabId, changeInfo, tab) {
       switch (changeInfo.status) {
         case 'loading':
+          isValidTab(tabId, tab.url);
           break;
         case 'complete':
-          tabUrls[tabId] = tab.url;
           handleTabLoaded(tabId, changeInfo, tab);
           break;
         default:
@@ -348,16 +412,14 @@
       // Listen for closed tabs
       chrome.tabs.onRemoved.addListener(onRemoved);
 
+      // Listen for active tab changed events
+      chrome.tabs.onActivated.addListener(onActivated);
+
       // Listen for updated tabs
       chrome.tabs.onUpdated.addListener(onUpdated);
 
-      // Reload open tabs
-      chrome.tabs.query({}, function(allTabs) {
-        $.each(allTabs, function(index, tab) {
-          if (tab && !tab.url.isChromeUrl())
-            chrome.tabs.reload(tab.id);
-        });
-      });
+      // Reload all opened tabs in order to update the extension's content scripts
+      reloadTabs();
     }
 
     return {
@@ -373,6 +435,6 @@ var storageManager = new FindZilla.StorageManager();
 var optionsManager = new FindZilla.OptionsManager(storageManager);
 var background = new FindZilla.BackgroundManager(storageManager);
 
-optionsManager.init();
-
-background.init();
+optionsManager.init(function() {
+  background.init();
+});

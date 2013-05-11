@@ -2,7 +2,7 @@
   "extension_description": {
     "message": "Find text on pages better and more efficiently!"
   },
-  "command_description": {
+  "toggle_command_description": {
     "message": "Send a 'toggle-feature' event to the extension"
   },
   "find_label": {
@@ -32,9 +32,6 @@
   "toggle_hotkey_label": {
     "message": "Toggle: "
   },
-  "default_toggle_hotkey_label": {
-    "message": "(Default: F)"
-  },
   "behavior_options_label": {
     "message": "Behavior"
   },
@@ -49,5 +46,14 @@
   },
   "empty_string": {
     "message": ""
+  },
+  "toggle_hotkey_default": {
+    "message": "F"
+  },
+  "toggle_hotkey_prefix": {
+    "message": "SHIFT + CTRL + "
+  },
+  "toggle_browser_action_title": {
+    "message": "FindZilla - Toggle"
   }
 }

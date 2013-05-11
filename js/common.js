@@ -92,7 +92,7 @@
    * @return {boolean}
    */
   String.prototype.isExtensionUrl = function() {
-    return (new RegExp("^chrome-extension:\/\/" + chrome.i18n.getMessage("@@extension_id") + "\/.*", "gi")).test(this);
+    return this && (new RegExp("^chrome-extension:\/\/" + chrome.i18n.getMessage("@@extension_id") + "\/.*", "gi")).test(this);
   };
 
   /**
@@ -100,7 +100,7 @@
    * @return {boolean}
    */
   String.prototype.isAnyExtensionUrl = function() {
-    return /^chrome-extension:\/\/.*/gi.test(this);
+    return this && /^chrome-extension:\/\/.*/gi.test(this);
   };
 
   /**
@@ -108,7 +108,7 @@
    * @return {boolean}
    */
   String.prototype.isChromeUrl = function() {
-    return /^chrome[a-z\-]*:\/\/.*/gi.test(this);
+    return this && /^chrome[a-z\-]*:\/\/.*/gi.test(this);
   };
 
   /**
@@ -116,7 +116,7 @@
    * @return {boolean}
    */
   String.prototype.isEmpty = function() {
-    return (!this || 0 === this.length);
+    return !this || 0 === this.length;
   };
 
   /**
@@ -124,7 +124,7 @@
    * @return {boolean}
    */
   String.prototype.isBlank = function() {
-    return (!this || /^\s*$/.test(this));
+    return !this || /^\s*$/.test(this);
   };
 
   /**

@@ -32,7 +32,7 @@
 
       if (optionInfo) {
         optionsManager.setOption(value, optionInfo.section, optionInfo.key);
-        notifyTabs({
+        sendNotification({
           option : optionInfo,
           value : value
         });
@@ -135,13 +135,17 @@
       }
     }
 
-    function notifyTabs(option) {
+    function sendNotification(option) {
+      var message = new FindZilla.Message(FindZilla.MessageType.OPTION, option);
+
+      chrome.extension.sendMessage(message);      
+      
       chrome.tabs.query({
         status : 'complete'
       }, function(allTabs) {
         $.each(allTabs, function(index, tab) {
           if (!tab.url.isChromeUrl()) {
-            chrome.tabs.sendMessage(tab.id, new FindZilla.Message(FindZilla.MessageType.OPTION, option));
+            chrome.tabs.sendMessage(tab.id, message);
           }
         });
       });
