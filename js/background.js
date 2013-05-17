@@ -76,8 +76,8 @@
 
       var obj = options;
 
-      for (var i = 0; i < args.length; i++) {
-        var prop = args[i];
+      for (var i = 0; i < arguments.length; i++) {
+        var prop = arguments[i];
 
         if (obj && prop in obj && obj.hasOwnProperty(prop)) {
           var propValue = obj[prop];
