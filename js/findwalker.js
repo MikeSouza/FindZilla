@@ -214,7 +214,7 @@
 
       return range;
     }
-    
+
     function getMatchType() {
       return matchType;
     }
@@ -236,13 +236,11 @@
           nodes.shift();
           offsets.shift();
 
-          return;      
-        } 
-        else if (startPos < nodeLen) {
+          return;
+        } else if (startPos < nodeLen) {
           offsets[0] = startPos;
           return;
-        }
-        else {
+        } else {
           nodeLen = 0;
           length = startPos - nodeLen;
         }
@@ -438,7 +436,7 @@
       curState.offset = i;
       curState.matchOffset = j;
     }
-    
+
     function find(criteria, findInNodeCallback, nextNodeCallback, prevNodeCallback) {
       var curState = new FindState(criteria);
       var findRange = new FindRange(criteria.direction);
